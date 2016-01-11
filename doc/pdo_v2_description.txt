@@ -8,3 +8,16 @@ newer Pepakura Designer 2.x and 3.x series.
 
 Textures
 -uncompressed RGB (BGR?) 24bit triplets
+
+Vertices 
+X/Y/Z floats
+
+Faces 
+4 or 5 lines of data:
+1st line: at the end, there's the number of vertices of which it's composed of
+2..4/5th line:
+  -vertex index
+  -2D coordinates: X/Y floats
+  -texture coordinates: U/V floats
+More than 4 vertices per face are possible in newer format, however it doesn't
+seem like they are supported here as well.
