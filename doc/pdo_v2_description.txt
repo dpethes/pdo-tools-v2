@@ -1,0 +1,10 @@
+"PDO v2" format description
+===========================
+
+This is an unofficial description of the file format used by Pepakura Designer
+1.x. It can be identified by string '# Pepakura Designer Work Info ver 2' at
+the beginning of the file. It's (mostly) text-based, unlike the format used by
+newer Pepakura Designer 2.x and 3.x series.
+
+Textures
+-uncompressed RGB (BGR?) 24bit triplets
