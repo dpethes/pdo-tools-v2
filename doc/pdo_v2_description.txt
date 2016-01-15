@@ -2,22 +2,131 @@
 ===========================
 
 This is an unofficial description of the file format used by Pepakura Designer
-1.x. It can be identified by string '# Pepakura Designer Work Info ver 2' at
-the beginning of the file. It's (mostly) text-based, unlike the format used by
-newer Pepakura Designer 2.x and 3.x series.
+1.x. 
 
-Textures
--uncompressed RGB (BGR?) 24bit triplets
+Format notes
+------------
+Files can be identified by string '# Pepakura Designer Work Info ver 2' at
+their beginning. Format is (mostly) text-based, unlike the later formats used by
+newer Pepakura Designer 2.x and 3.x series. Every text line is ended by 0x0A 
+character.
 
-Vertices 
-X/Y/Z floats
+Description how-to
+------------------
+Strings in the following description are marked by double quotes ("string").
+Placeholder characters %f, %d, %s should be replaced by float, decimal or 
+string, meaning of which is described at the same line as the string format.
+If the string description is split between multiple lines, it's indicated
+by the plus sign character (+) at the start of a new line. It's not part of the
+string itself.
+Repetitions are indicated by words "for each #" followed by a block {}.
 
-Faces 
-4 or 5 lines of data:
-1st line: at the end, there's the number of vertices of which it's composed of
-2..4/5th line:
-  -vertex index
-  -2D coordinates: X/Y floats
-  -texture coordinates: U/V floats
-More than 4 vertices per face are possible in newer format, however it doesn't
-seem like they are supported here as well.
+Header
+------
+"# Pepakura Designer Work Info ver 2"
+"#"
+""
+"version 2"
+"min_version 2"
+""
+"model %f %f %f %f %f %f"
+
+Objects
+-------
+"solids %d"
+for each solid {
+  "solid" - solid identifier
+  "%s" - solid name
+  "1" ???
+  "vertices %d" - number of vertices
+  for each vertex {
+    "%f %f %f" - X/Y/Z floats
+  }
+  "faces %d" - number of faces
+  for each face {
+    "%d %d" - material index?, ?
+    + " %f %f %f %f"
+    + " %d" - number of 2D vertices in face
+    for each 2D vertex in face {
+      "%d" - index of 3D vertex
+      + " %f %f %f %f" - 2D X, 2D Y, texture U, texture V
+      + " %d %f %f" - ?, ?, ?
+    }
+  }
+  "edges %d" - number of edges
+  for each edge {
+    "%d %d %d %d %d %d", ???
+  }
+}
+
+Materials
+---------
+"defaultmaterial"
+"material"
+""
+-default material settings, see lower
+"materials %d" - number of materials
+for each material {
+  "%s" - material name
+  4x "%f %f %f %f" - colors
+  "%d %d" - texture flag?, ?
+  if texture flag set {
+    ""
+    "%d %d" - texture width, height
+    uncompressed RGB (BGR?) 24bit triplets
+  }
+}
+
+Parts
+-----
+"parts %d" - number of parts
+for each part {
+  "%d %f %f %f %f"
+}
+
+Texts
+-----
+"text %d" - number of texts
+for each text {
+  "%d"
+  "%s" - font name
+  "%s" - string
+  "%d %f %f %f %f" - font size, ???
+  + " %d %d %d %d" - ??? font color A, R, G, B
+}
+
+Info section
+------------
+"info"
+"key %s" - not really a key
+"iLLevel %d
+"dMag3d %f
+"dMag2d %f
+"dTenkaizuX %f
+"dTenkaizuY %f
+"dTenkaizuWidth %f
+"dTenkaizuHeight %f
+"dTenkaizuMargin %f
+"bReverse %d
+"bFinished %d
+"iAngleEps %d
+"iTaniLineType %d
+"iYamaLineType %d
+"iCutLineType %d
+"bTextureCoodinates %d
+"bDrawFlap %d
+"bDrawNumber %d
+"bUseMaterial %d
+"iEdgeNumberFontSize %d
+"bNorishiroReverse %d
+"bEdgeIdReverse %d
+"bEnableLineAlpha %d
+"dTextureLineAlpha %f
+"bCullEdge %d
+"iPageType %d
+"dPageMarginSide %f
+"dPageMarginTop %f
+"bDrawWhiteBkLine %d
+"/info"
+"end 2"
+
