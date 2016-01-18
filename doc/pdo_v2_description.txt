@@ -69,12 +69,17 @@ Materials
 "materials %d" - number of materials
 for each material {
   "%s" - material name
-  4x "%f %f %f %f" - colors
-  "%d %d" - texture flag?, ?
+  "" - always empty?
+  "%f %f %f %f" - colors
+  + " %f %f %f %f"
+  + " %f %f %f %f"
+  + " %f %f %f %f"
+  + " %f %f %f %f"
+  + "%d %d" - texture flag?, ?
   if texture flag set {
     ""
     "%d %d" - texture width, height
-    uncompressed RGB (BGR?) 24bit triplets
+    "%binary" - uncompressed RGB (BGR?) 24bit triplets
   }
 }
 
