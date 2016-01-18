@@ -55,7 +55,8 @@ for each solid {
   }
   "edges %d" - number of edges
   for each edge {
-    "%d %d %d %d" - face 1 index, face 2 index, vertex 1 index, vertex 2 index
+    "%d %d %d %d" - face 1 index, face 2 index, vertex 1 index, vertex 2 index.
+                    Face 2 index can be negative
     + " %d %d" - ?, cut edge flag (0=no cut, 1=cut)
   }
 }
@@ -68,14 +69,14 @@ Materials
 -default material settings, see lower
 "materials %d" - number of materials
 for each material {
+  "material"
   "%s" - material name
-  "" - always empty?
   "%f %f %f %f" - colors
   + " %f %f %f %f"
   + " %f %f %f %f"
   + " %f %f %f %f"
   + " %f %f %f %f"
-  + "%d %d" - texture flag?, ?
+  + "%d %d" - ?, texture flag
   if texture flag set {
     ""
     "%d %d" - texture width, height
