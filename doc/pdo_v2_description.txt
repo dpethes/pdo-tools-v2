@@ -88,7 +88,8 @@ Parts
 -----
 "parts %d" - number of parts
 for each part {
-  "%d %f %f %f %f"
+  "%d" - object/solid index
+  + " %f %f %f %f"
 }
 
 Texts
