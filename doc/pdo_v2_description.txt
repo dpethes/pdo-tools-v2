@@ -44,7 +44,8 @@ for each solid {
   }
   "faces %d" - number of faces
   for each face {
-    "%d %d" - material index?, ?
+    "%d" - material index?
+    + " %d" - part index
     + " %f %f %f %f"
     + " %d" - number of 2D vertices in face
     for each 2D vertex in face {
@@ -89,7 +90,8 @@ Parts
 "parts %d" - number of parts
 for each part {
   "%d" - object/solid index
-  + " %f %f %f %f"
+  + " %f %f" - part x, y offset
+  + " %f %f" - no effect?
 }
 
 Texts
@@ -107,9 +109,9 @@ Info section
 ------------
 "info"
 "key %s" - not really a key
-"iLLevel %d
+"iLLevel %d"         - always 0?
 "dMag3d %f
-"dMag2d %f
+"dMag2d %f"          - 2D pattern scaling
 "dTenkaizuX %f
 "dTenkaizuY %f
 "dTenkaizuWidth %f
@@ -122,12 +124,12 @@ Info section
 "iYamaLineType %d
 "iCutLineType %d
 "bTextureCoodinates %d
-"bDrawFlap %d
-"bDrawNumber %d
+"bDrawFlap %d"           - show flaps
+"bDrawNumber %d"         - show edge ID
 "bUseMaterial %d
-"iEdgeNumberFontSize %d
+"iEdgeNumberFontSize %d" - edge ID font size
 "bNorishiroReverse %d
-"bEdgeIdReverse %d
+"bEdgeIdReverse %d"      - place edge ID outside face
 "bEnableLineAlpha %d
 "dTextureLineAlpha %f
 "bCullEdge %d
