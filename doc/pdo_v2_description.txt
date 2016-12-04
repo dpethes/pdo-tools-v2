@@ -16,6 +16,7 @@ Description how-to
 Strings in the following description are marked by double quotes ("string").
 Placeholder characters %f, %d, %s should be replaced by float, decimal or 
 string, meaning of which is described at the same line as the string format.
+Booleans are stored as decimal values 0 = false, 1 = true.
 If the string description is split between multiple lines, it's indicated
 by the plus sign character (+) at the start of a new line. It's not part of the
 string itself.
@@ -37,7 +38,7 @@ Objects
 for each solid {
   "solid" - solid identifier
   "%s" - solid name
-  "1" ???
+  "1" - always 1?
   "vertices %d" - number of vertices
   for each vertex {
     "%f %f %f" - X/Y/Z floats
@@ -51,7 +52,9 @@ for each solid {
     for each 2D vertex in face {
       "%d" - index of 3D vertex
       + " %f %f %f %f" - 2D X, 2D Y, texture U, texture V
-      + " %d %f %f" - ?, ?, ?
+      + " %d" - has flap flag
+      + " %f" - draw edge line
+      + " %f" - flap height
     }
   }
   "edges %d" - number of edges
@@ -72,11 +75,11 @@ Materials
 for each material {
   "material"
   "%s" - material name
-  "%f %f %f %f" - colors
-  + " %f %f %f %f"
-  + " %f %f %f %f"
-  + " %f %f %f %f"
-  + " %f %f %f %f"
+  "%f %f %f %f" - 3D view ambient? RGBA color
+  + " %f %f %f %f" - 3D view RGBA color
+  + " %f %f %f %f" - 3D view light? RGBA color
+  + " %f %f %f %f" - RGBA color
+  + " %f" %f %f %f" - 2D view ARGB color
   + "%d %d" - ?, texture flag
   if texture flag set {
     ""
@@ -91,7 +94,7 @@ Parts
 for each part {
   "%d" - object/solid index
   + " %f %f" - part x, y offset
-  + " %f %f" - no effect?
+  + " %f %f" - bounding box width, height (including flaps)
 }
 
 Texts
@@ -114,8 +117,8 @@ Info section
 "dMag2d %f"          - 2D pattern scaling
 "dTenkaizuX %f
 "dTenkaizuY %f
-"dTenkaizuWidth %f
-"dTenkaizuHeight %f
+"dTenkaizuWidth %f"  - 2D pattern width
+"dTenkaizuHeight %f" - 2D pattern height
 "dTenkaizuMargin %f
 "bReverse %d
 "bFinished %d
