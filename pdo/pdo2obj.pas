@@ -23,6 +23,80 @@ const
   HeaderComment = 'Created with PdoTools';
   DefaultMaterial = 'default';
 
+{
+  StoreTexture
+  Save texture in TGA format: needs to swap pixels from RGB to BGR order that TGA uses.
+}
+procedure StoreTexture(const fname: string; const pixdata: pbyte; const w, h: integer);
+var
+  i: integer;
+  t: byte;
+  size: integer;
+  pixels: pbyte;
+begin
+  size := w * h * 3;
+  pixels := getmem(size);
+  move(pixdata^, pixels^, size);
+  for i := 0 to w * h - 1 do begin
+      t := pixels[i * 3];
+      pixels[i * 3] := pixels[i * 3 + 2];
+      pixels[i * 3 + 2] := t;
+  end;
+  WriteTga(fname, pixels, w, h, size);
+  freemem(pixels);
+end;
+
+
+procedure SaveMaterials(const pdo: TPdoV2Document; const obj_name: string);
+var
+  mtl_file:TextFile;
+  mat: TPdoV2Material;
+  tex_counter: integer;
+  tex_name, tex_name_prefix: string;
+
+procedure WriteBaseAttrs;
+begin
+  writeln(mtl_file, 'Ka 1.000 1.000 1.000');  //ambient color
+  writeln(mtl_file, 'Kd 1.000 1.000 1.000');  //diffuse color
+  writeln(mtl_file, 'Ks 1.000 1.000 1.000');  //specular color
+  writeln(mtl_file, 'Ns 100.0');              //specular weight
+  writeln(mtl_file, 'illum 2');               //Color on and Ambient on, Highlight on
+end;
+
+procedure WriteMaterial(const name, texture: string);
+begin
+  writeln(mtl_file, 'newmtl ', name);  //begin new material
+  if texture <> '' then
+      writeln(mtl_file, 'map_Kd ' + texture);  //texture
+end;
+
+begin
+  tex_name_prefix := obj_name + '_tex';
+
+  AssignFile(mtl_file, obj_name + '.mtl');
+  Rewrite(mtl_file);
+
+  writeln(mtl_file, '# ' + HeaderComment);
+  WriteMaterial(DefaultMaterial, '');
+  WriteBaseAttrs;
+
+  tex_counter := 0;
+  for mat in pdo.materials do begin
+      if mat.has_texture then begin
+          tex_name := tex_name_prefix + IntToStr(tex_counter) + '.tga';
+          tex_counter += 1;
+          StoreTexture(tex_name, mat.texture.data, mat.texture.width, mat.texture.height);
+      end else
+          tex_name := '';
+      WriteMaterial(mat.name, tex_name);
+      WriteBaseAttrs;
+      writeln(mtl_file);
+  end;
+
+  CloseFile(mtl_file);
+end;
+
+
 procedure WriteObj(const pdo: TPdoV2Document; const obj_name: string; const opts: TObjExportOptions);
 const
   DesiredUnitSize = 2;
@@ -127,6 +201,8 @@ begin
   end;
 
   CloseFile(objfile);
+
+  SaveMaterials(pdo, obj_name);
 end;
 
 end.
