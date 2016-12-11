@@ -1,0 +1,18 @@
+syntax: glob
+*.exe
+*.dll
+*.o
+*.or
+*.obj
+*.ppu
+*.a
+*.compiled
+*.lps
+*.s
+*.res
+*.bat
+*.bak
+*.pdo
+*.svg
+*.pdf
+lib/
