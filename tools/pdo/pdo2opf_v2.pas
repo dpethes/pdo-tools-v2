@@ -202,8 +202,8 @@ begin
 
   part2d.bounding_box.left := part.left * vertex_scale;
   part2d.bounding_box.top  := part.top  * vertex_scale;
-  part2d.bounding_box.width  := width  * vertex_scale;
-  part2d.bounding_box.height := height * vertex_scale;
+  part2d.bounding_box.width  := width;
+  part2d.bounding_box.height := height;
 
   part2d.bounding_box_vert.left := minx;
   part2d.bounding_box_vert.top  := miny;
