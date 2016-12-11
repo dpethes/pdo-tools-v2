@@ -34,11 +34,11 @@ Header
 
 Objects
 -------
-"solids %d"
+"solids %d" - number of objects
 for each solid {
   "solid" - solid identifier
   "%s" - solid name
-  "1" - always 1?
+  "%d" - is visible flag
   "vertices %d" - number of vertices
   for each vertex {
     "%f %f %f" - X/Y/Z floats
@@ -53,7 +53,7 @@ for each solid {
       "%d" - index of 3D vertex
       + " %f %f %f %f" - 2D X, 2D Y, texture U, texture V
       + " %d" - has flap flag
-      + " %f" - draw edge line
+      + " %d" - draw edge line
       + " %f" - flap height
     }
   }
@@ -79,8 +79,8 @@ for each material {
   + " %f %f %f %f" - 3D view RGBA color
   + " %f %f %f %f" - 3D view light? RGBA color
   + " %f %f %f %f" - RGBA color
-  + " %f" %f %f %f" - 2D view ARGB color
-  + "%d %d" - ?, texture flag
+  + " %f %f %f %f" - 2D view ARGB color
+  + " %d %d" - ?, texture flag
   if texture flag set {
     ""
     "%d %d" - texture width, height
@@ -104,8 +104,8 @@ for each text {
   "%d"
   "%s" - font name
   "%s" - string
-  "%d %f %f %f %f" - font size, ???
-  + " %d %d %d %d" - ??? font color A, R, G, B
+  "%d %f %f %f %f" - font size, x, y, ?, ?
+  + " %d %d %d %d" - text color A, R, G, B  (A seems to be ignored)
 }
 
 Info section
@@ -139,7 +139,14 @@ Info section
 "iPageType %d
 "dPageMarginSide %f
 "dPageMarginTop %f
-"bDrawWhiteBkLine %d
+
+optional items
+{
+  "bDrawWhiteBkLine %d"   - seems to be optional
+  "dCenterX %f"
+  "dCenterY %f"
+  "dCenterZ %f"
+}
 "/info"
 "end 2"
 
