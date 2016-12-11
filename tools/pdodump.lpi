@@ -30,7 +30,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="utils;pdo"/>
+            <OtherUnitFiles Value="utils;pdo;rasterizer;pdfwriter;pngwriter;dc2"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -56,7 +56,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="f16.pdo"/>
+        <CommandLineParams Value="tut_01.pdo s"/>
       </local>
     </RunParams>
     <RequiredPackages Count="2">
@@ -67,10 +67,11 @@
         <PackageName Value="LazUtils"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="13">
       <Unit0>
         <Filename Value="pdodump.lpr"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="pdoconvert"/>
       </Unit0>
       <Unit1>
         <Filename Value="pdo\pdo_v2_parser.pas"/>
@@ -88,6 +89,39 @@
         <Filename Value="utils\utils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="pdo\pdo2opf_v2.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="utils\genericstructlist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GenericStructList"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="rasterizer\face2d_rasterizer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="rasterizer\rasterizer2d.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="pdfwriter\svg_writer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="pdfwriter\vector_writer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="pngwriter\png_writer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="dc2\dc2_simple_api.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -98,7 +132,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="utils;pdo"/>
+      <OtherUnitFiles Value="utils;pdo;rasterizer;pdfwriter;pngwriter;dc2"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

@@ -10,6 +10,7 @@ procedure WriteTga(const filename: string; const data: pbyte; const width, heigh
 procedure PgmSave(const fname: string; p: pbyte; w, h: integer);
 procedure PnmSave(const fname: string; const p: pbyte; const w, h: integer);
 function clip3(const a, b, c: single): single;
+function clip3(const a, b, c: integer): integer;
 function GetMsecs: longword;
 function Scan(const s: string; const fmt : string; const Pointers : array of Pointer) : Integer;
 
@@ -86,6 +87,14 @@ begin
   else result := b;
 end;
 
+function clip3(const a, b, c: integer): integer;
+begin
+  if b < a then
+    result := a
+  else if b > c then
+    result := c
+  else result := b;
+end;
 
 function GetMsecs: longword;
 var

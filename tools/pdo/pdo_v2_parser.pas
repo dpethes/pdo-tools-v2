@@ -278,7 +278,7 @@ begin
   for i := 0 to _d.part_count - 1 do begin
       s := _f.ReadLine;
       Scan(s, '%d %f %f %f %f',
-              [@p.object_index, @p.left, @p.height, @p.width, @p.height]);
+              [@p.object_index, @p.left, @p.top, @p.width, @p.height]);
       _d.parts[i] := p;
   end;
 end;
@@ -317,6 +317,7 @@ begin
   s := _f.ReadLine;  //  'iLLevel %d'         - always 0?
   s := _f.ReadLine;  //  'dMag3d %f
   s := _f.ReadLine;  //  'dMag2d %f'          - 2D pattern scaling
+  Scan(s, 'dMag2d %f', [@_d.info.dMag2d]);
   s := _f.ReadLine;  //  'dTenkaizuX %f
   s := _f.ReadLine;  //  'dTenkaizuY %f
   s := _f.ReadLine;  //  'dTenkaizuWidth %f'  - 2D pattern width
