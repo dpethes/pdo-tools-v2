@@ -67,7 +67,7 @@
         <PackageName Value="LazUtils"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="5">
       <Unit0>
         <Filename Value="pdodump.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -88,18 +88,6 @@
         <Filename Value="utils\utils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
-      <Unit5>
-        <Filename Value="pdo\tabs.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="pdo\pdo_util.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit6>
-      <Unit7>
-        <Filename Value="pdo\pdo_writer.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
