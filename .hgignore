@@ -15,4 +15,6 @@ syntax: glob
 *.pdo
 *.svg
 *.pdf
+*.mtl
+*.tga
 lib/

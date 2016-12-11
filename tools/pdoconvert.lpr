@@ -35,7 +35,7 @@ begin
   transform.PartsTo2D;
 
   transform.RasterizeToPngStream(150);
-  transform.DumpPng('d:\david\devel\projekty\pdo_v2\source\tools\');
+  //transform.DumpPng();
 
   opt.outlines := true;
   opt.textures := true;

@@ -12,7 +12,7 @@
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="pdodump"/>
+      <Title Value="pdoconvert"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
@@ -26,7 +26,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="pdodump"/>
+            <Filename Value="pdoconvert"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -67,11 +67,10 @@
         <PackageName Value="LazUtils"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="16">
       <Unit0>
-        <Filename Value="pdodump.lpr"/>
+        <Filename Value="pdoconvert.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="pdoconvert"/>
       </Unit0>
       <Unit1>
         <Filename Value="pdo\pdo_v2_parser.pas"/>
@@ -122,13 +121,25 @@
         <Filename Value="dc2\dc2_simple_api.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="pdo\opf_common.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="pdo\opf2vector.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="pdo\part_outliner.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit15>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="pdodump"/>
+      <Filename Value="pdoconvert"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
