@@ -157,7 +157,8 @@ var
   i: Integer;
   s: String;
 begin
-  Assert(_f.ReadLine = 'solid');
+  s := _f.ReadLine;
+  Assert(s = 'solid');
   o.name := _f.ReadLine;
   o.visible := _f.ReadLine = '1';
 
@@ -225,7 +226,8 @@ var
   color: psingle; //color 3D pointer
   size: integer;
 begin
-  Assert(_f.ReadLine = 'material');
+  s := _f.ReadLine;
+  Assert(s = 'material');
   r.name := _f.ReadLine;
   s := _f.ReadLine;
 
@@ -256,7 +258,8 @@ var
   s: String;
   i: Integer;
 begin
-  Assert(_f.ReadLine = 'defaultmaterial');
+  s := _f.ReadLine;
+  Assert(s = 'defaultmaterial');
   ReadMaterial;   //ignore default material
 
   s := _f.ReadLine;
